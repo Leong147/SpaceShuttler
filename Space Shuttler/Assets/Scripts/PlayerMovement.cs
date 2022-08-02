@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         Count = 0;
-        distance = 1950;
+        distance = 4;
         BulletAmount = 5;
         Time.timeScale = 1;
     }
@@ -49,7 +49,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
         Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
-        rb.MovePosition(rb.position + forwardMove + horizontalMove); 
+        rb.MovePosition(rb.position + forwardMove + horizontalMove);
+        //below were from update
+        BoostEnergy -= 1.25f * Time.deltaTime;
+        distance += speed*Time.deltaTime;
+        if (BulletAmount < MaxBulletAmout)
+        {
+            bulletCooldown += Time.deltaTime;
+        }
+        Debug.Log("" + distance);
     }
 
     // Update is called once per frame
@@ -58,13 +66,13 @@ public class PlayerMovement : MonoBehaviour
         score.text = Count.ToString();
         bulletText.text = BulletAmount.ToString();
         boostEnergyText.text = BoostEnergy.ToString();
-        BoostEnergy -= 1.25f * Time.deltaTime;
+        //BoostEnergy -= 1.25f * Time.deltaTime;
 
         horizontalInput = Input.GetAxis("Horizontal");
 
-        distance += speed;
+        //distance += speed;
 
-        if(distance >= 2000)
+        if(distance >= 5)
         {
             Count += 1;
             distance = 0;
@@ -92,10 +100,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Charging bullet
-        if (BulletAmount < MaxBulletAmout)
-        {
-            bulletCooldown += Time.deltaTime;
-        }
+        //if (BulletAmount < MaxBulletAmout)
+        //{
+        //    bulletCooldown += Time.deltaTime;
+        //}
 
         if(bulletCooldown >= 5)
         {
