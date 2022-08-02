@@ -747,13 +747,27 @@ Rigidbody:
   m_GameObject: {fileID: 1165056665}
   serializedVersion: 2
   m_Mass: 0.01
-  m_Drag: 10
-  m_AngularDrag: 5
-  m_UseGravity: 1
+  m_Drag: 20
+  m_AngularDrag: 1000
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
-  m_CollisionDetection: 0
+  m_Constraints: 108
+  m_CollisionDetection: 2
+--- !u!136 &1165056668
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165056665}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 50
+  m_Height: 50
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1330135229
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 834105116d1a4e24184c9598dd516d4e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 834105116d1a4e24184c9598dd516d4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -952,7 +966,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7f52e7eab1582914c8f9eeaa73c14098, type: 2}
     - target: {fileID: 919132149155446097, guid: 834105116d1a4e24184c9598dd516d4e, type: 3}
       propertyPath: m_Name
-      value: MGD2 spaceship2
+      value: SpaceShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 834105116d1a4e24184c9598dd516d4e, type: 3}
+      propertyPath: m_TagString
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 1603246306389932429, guid: 834105116d1a4e24184c9598dd516d4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1167,7 +1185,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745923756}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1222,7 +1240,6 @@ Transform:
   m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1826574826}
   - {fileID: 1165056666}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1252,7 +1269,7 @@ MonoBehaviour:
   score: {fileID: 409615714}
   bulletText: {fileID: 999194296}
   boostEnergyText: {fileID: 2077667074}
-  horizontalMultiplier: 1.2
+  horizontalMultiplier: 5
   BulletAmount: 0
   MaxBulletAmout: 8
   Energy: {fileID: 5375465463970419754, guid: b021f302569b30740b16156da71dff93, type: 3}
@@ -1285,8 +1302,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 5
-  m_Damper: 0.2
+  m_Spring: 100
+  m_Damper: 0
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -1319,13 +1336,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826574825}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1.4285713, z: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -254.4835, y: -33.962208, z: -0.9645958}
+  m_LocalScale: {x: 108.2664, y: 108.26643, z: 108.2664}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1745923760}
-  m_RootOrder: 0
+  m_Father: {fileID: 1165056666}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991504697
 GameObject:

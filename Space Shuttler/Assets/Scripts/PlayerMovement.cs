@@ -26,8 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public Text boostEnergyText;
 
     float horizontalInput;
-    public float horizontalMultiplier = 1.2f;
-    float MaxhorizontalMultiplier = 1.5f;
+    public float horizontalMultiplier = 5f;
+    float MaxhorizontalMultiplier = 6f;
 
     public int BulletAmount;
     public int MaxBulletAmout = 8;
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (!alive) return;
 
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-        Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+        Vector3 horizontalMove = transform.right * horizontalInput * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
         //below were from update
         BoostEnergy -= 1.25f * Time.deltaTime;
@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
     public void Boost()
     {
         speed += 5;
-        horizontalMultiplier += 0.05f;
+        horizontalMultiplier += 0.2f;
     }
 
     void Restart()
@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         {
             BulletAmount += 1;
             speed += 5;
-            horizontalMultiplier += 0.05f;
+            horizontalMultiplier += 0.2f;
             Destroy(other.gameObject);
             BoostEnergy += 30f;
         }

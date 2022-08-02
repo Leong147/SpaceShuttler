@@ -14,12 +14,12 @@ public class Obstacles : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.tag == "player")
         {
             playerMovement.BoostAmount -= 1;
             playerMovement.BoostEnergy -= 20f;
             playerMovement.speed = 10;
-            playerMovement.horizontalMultiplier = 1.2f;
+            playerMovement.horizontalMultiplier = 5f;
             Debug.Log("boost -1");
             playerMovement.die();
             Destroy(this.gameObject);
@@ -28,12 +28,12 @@ public class Obstacles : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.gameObject.tag == "player")
         {
             playerMovement.BoostAmount -= 1;
             playerMovement.speed = 10;
             playerMovement.BoostEnergy -= 20f;
-            playerMovement.horizontalMultiplier = 1.2f;
+            playerMovement.horizontalMultiplier = 5f;
             Debug.Log("boost -1");
             playerMovement.die();
             Destroy(this.gameObject);

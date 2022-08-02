@@ -6,6 +6,7 @@ TagManager:
   tags:
   - obstacle
   - energypoint
+  - player
   layers:
   - Default
   - TransparentFX
