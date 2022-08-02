@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform bulletSpawnPoint;
     public Rigidbody rb;
     public GameObject bullet;
+    public bool EnergyPoint;
 
     public float distance = 0f;
     public int Count = 0;
@@ -17,12 +19,15 @@ public class PlayerMovement : MonoBehaviour
     public int BoostAmount = 3;
     bool alive = true;
 
+    public Text score;
+
     float horizontalInput;
     public float horizontalMultiplier = 1.2f;
 
     private void Start()
     {
-        distance = 1800;
+        Count = 0;
+        distance = 1950;
     }
 
     private void FixedUpdate()
@@ -37,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        score.text = Count.ToString();
+
         horizontalInput = Input.GetAxis("Horizontal");
 
         distance += speed;
@@ -45,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Count += 1;
             distance = 0;
-            Debug.Log("" + Count);
         }
 
         if (transform.position.y < -2)
@@ -59,6 +65,12 @@ public class PlayerMovement : MonoBehaviour
             shootBullet();
         }
 
+        if (speed >= Maxspeed)
+        {
+            speed = Maxspeed;
+        }
+
+        //Debug test speed up
         if (Input.GetKeyDown("space"))
         {
             if(speed < Maxspeed)
@@ -67,9 +79,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(speed >= Maxspeed)
+        //Set for Spawning Energy Point Tile
+        if (Count > 0 && Count <= 200 && Count % 20 == 0)
         {
-            speed = Maxspeed;
+            EnergyPoint = true;
+        }
+
+        if (Count > 200 && Count <= 500 && Count % 30 == 0)
+        {
+            EnergyPoint = true;
+        }
+
+        if (Count > 500 && Count % 50 == 0)
+        {
+            EnergyPoint = true;
         }
     }
 
@@ -77,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(BoostAmount <= 0f)
         {
+            speed = 0;
             alive = false;
             Invoke("Restart", 2);
         }

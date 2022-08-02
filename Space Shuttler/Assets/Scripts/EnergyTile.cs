@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundTile1: MonoBehaviour
+public class EnergyTile : MonoBehaviour
 {
     GroundSpawner groundSpawner;
     public GameObject obstaclePrefab;
@@ -10,14 +10,14 @@ public class GroundTile1: MonoBehaviour
     Transform spawnPoint;
     Transform spawnPoint2;
     int obstacleSpawnIndex;
-    int obstacleSpawnIndex2;
+    int EnergySpawnIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
         SpawnObstacles();
-        //SpawnSecondObstacles();
+        SpawnEnergyPoint();
     }
 
     private void OnTriggerExit(Collider other)
@@ -34,19 +34,19 @@ public class GroundTile1: MonoBehaviour
 
     void SpawnObstacles()
     {
-        obstacleSpawnIndex = Random.Range(4,9);
+        obstacleSpawnIndex = Random.Range(4,8);
         spawnPoint = transform.GetChild(obstacleSpawnIndex);
 
         Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
     }
 
-    void SpawnSecondObstacles()
+    void SpawnEnergyPoint()
     {
-            obstacleSpawnIndex2 = Random.Range(4, 9);
-            if (obstacleSpawnIndex2 != obstacleSpawnIndex)
+            EnergySpawnIndex = Random.Range(4, 8);
+            if (EnergySpawnIndex != obstacleSpawnIndex)
             {
-                spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
-                Instantiate(obstaclePrefab, spawnPoint2.position, Quaternion.identity, transform);
+                spawnPoint2 = transform.GetChild(EnergySpawnIndex);
+                Instantiate(CoinPrefab, spawnPoint2.position, Quaternion.identity, transform);
             }       
     }
 }
