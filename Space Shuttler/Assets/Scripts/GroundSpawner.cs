@@ -19,7 +19,7 @@ public class GroundSpawner : MonoBehaviour
     {
         if(GSCount == 0)
         {
-            GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
+            GameObject temp = Instantiate(groundTile, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         }
 
