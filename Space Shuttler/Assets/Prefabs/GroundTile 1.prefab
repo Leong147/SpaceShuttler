@@ -200,9 +200,9 @@ GameObject:
   m_Component:
   - component: {fileID: 436863318660451424}
   - component: {fileID: 5512696336397830191}
-  - component: {fileID: 2410030054101397875}
+  - component: {fileID: 4825840419466273179}
   m_Layer: 0
-  m_Name: GroundTile
+  m_Name: GroundTile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 5}
---- !u!114 &2410030054101397875
+--- !u!114 &4825840419466273179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5059294180579234753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52de1f1652248db4caa6cff23b7fca85, type: 3}
+  m_Script: {fileID: 11500000, guid: 3698d19e522b22a46a32e9b5f5bb3221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1219097787906601518, guid: 0acdc1793b9a1a846847b04358d0d2f1, type: 3}

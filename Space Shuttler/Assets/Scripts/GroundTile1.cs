@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundTile : MonoBehaviour
+public class GroundTile1: MonoBehaviour
 {
     GroundSpawner groundSpawner;
     public GameObject obstaclePrefab;
@@ -16,7 +16,7 @@ public class GroundTile : MonoBehaviour
     void Start()
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
-        //SpawnObstacles();
+        SpawnObstacles();
         //SpawnSecondObstacles();
     }
 
