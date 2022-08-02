@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2535174967547572141}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: energypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 5375465463970419753}
   m_Layer: 0
   m_Name: energy point
-  m_TagString: Untagged
+  m_TagString: energypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

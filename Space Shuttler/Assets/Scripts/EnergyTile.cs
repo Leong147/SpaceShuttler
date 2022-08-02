@@ -16,8 +16,8 @@ public class EnergyTile : MonoBehaviour
     void Start()
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
-        SpawnObstacles();
         SpawnEnergyPoint();
+        SpawnObstacles();
     }
 
     private void OnTriggerExit(Collider other)
@@ -32,21 +32,21 @@ public class EnergyTile : MonoBehaviour
 
     }
 
-    void SpawnObstacles()
-    {
-        obstacleSpawnIndex = Random.Range(4,8);
-        spawnPoint = transform.GetChild(obstacleSpawnIndex);
-
-        Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
-    }
-
     void SpawnEnergyPoint()
     {
-            EnergySpawnIndex = Random.Range(4, 8);
-            if (EnergySpawnIndex != obstacleSpawnIndex)
+        EnergySpawnIndex = Random.Range(4,9);
+        spawnPoint = transform.GetChild(EnergySpawnIndex);
+
+        Instantiate(CoinPrefab, spawnPoint.position, Quaternion.identity, transform);
+    }
+
+    void SpawnObstacles()
+    {
+            obstacleSpawnIndex = Random.Range(4, 9);
+            if (obstacleSpawnIndex != EnergySpawnIndex)
             {
-                spawnPoint2 = transform.GetChild(EnergySpawnIndex);
-                Instantiate(CoinPrefab, spawnPoint2.position, Quaternion.identity, transform);
+                spawnPoint2 = transform.GetChild(obstacleSpawnIndex);
+                Instantiate(obstaclePrefab, spawnPoint2.position, Quaternion.identity, transform);
             }       
     }
 }

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public GameObject bullet;
     public bool EnergyPoint;
+    public float BoostEnergy = 100f;
+    float MaxBoostEnergy = 100f;
 
     public float distance = 0f;
     public int Count = 0;
@@ -20,14 +22,25 @@ public class PlayerMovement : MonoBehaviour
     bool alive = true;
 
     public Text score;
+    public Text bulletText;
+    public Text boostEnergyText;
 
     float horizontalInput;
     public float horizontalMultiplier = 1.2f;
+    float MaxhorizontalMultiplier = 1.5f;
+
+    public int BulletAmount;
+    public int MaxBulletAmout = 8;
+    float bulletCooldown = 0;
+
+    public GameObject Energy;
 
     private void Start()
     {
         Count = 0;
         distance = 1950;
+        BulletAmount = 5;
+        Time.timeScale = 1;
     }
 
     private void FixedUpdate()
@@ -43,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         score.text = Count.ToString();
+        bulletText.text = BulletAmount.ToString();
+        boostEnergyText.text = BoostEnergy.ToString();
+        BoostEnergy -= 1.25f * Time.deltaTime;
 
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -70,6 +86,40 @@ public class PlayerMovement : MonoBehaviour
             speed = Maxspeed;
         }
 
+        if (horizontalMultiplier >= MaxhorizontalMultiplier)
+        {
+            horizontalMultiplier = MaxhorizontalMultiplier;
+        }
+
+        //Charging bullet
+        if (BulletAmount < MaxBulletAmout)
+        {
+            bulletCooldown += Time.deltaTime;
+        }
+
+        if(bulletCooldown >= 5)
+        {
+            BulletAmount += 1;
+            bulletCooldown = 0;
+        }
+
+        if(BulletAmount >= MaxBulletAmout)
+        {
+            BulletAmount = MaxBulletAmout;
+        }
+
+        if(BoostEnergy >= MaxBoostEnergy)
+        {
+            BoostEnergy = MaxBoostEnergy;
+        }
+
+        if(BoostEnergy <= 0)
+        {
+            BoostEnergy = 0;
+            BoostAmount = 0;
+            die();
+        }
+
         //Debug test speed up
         if (Input.GetKeyDown("space"))
         {
@@ -80,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Set for Spawning Energy Point Tile
-        if (Count > 0 && Count <= 200 && Count % 20 == 0)
+        if (Count > 0 && Count <= 200 && Count % 25 == 0)
         {
             EnergyPoint = true;
         }
@@ -100,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(BoostAmount <= 0f)
         {
+            BoostEnergy = 0f;
             speed = 0;
             alive = false;
             Invoke("Restart", 2);
@@ -108,9 +159,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void shootBullet()
     {
-        GameObject b = Instantiate(bullet);
-        b.transform.position = bulletSpawnPoint.transform.position;
-        Destroy(b, 0.5f);
+        if(BulletAmount > 0)
+        {
+            GameObject b = Instantiate(bullet);
+            b.transform.position = bulletSpawnPoint.transform.position;
+            BulletAmount -= 1;
+            Destroy(b, 0.5f);
+        }
+        
     } 
 
     public void Boost()
@@ -122,5 +178,17 @@ public class PlayerMovement : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "energypoint")
+        {
+            BulletAmount += 1;
+            speed += 5;
+            horizontalMultiplier += 0.05f;
+            Destroy(other.gameObject);
+            BoostEnergy += 30f;
+        }
     }
 }

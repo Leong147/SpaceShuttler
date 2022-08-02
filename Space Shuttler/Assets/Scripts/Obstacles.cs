@@ -17,6 +17,7 @@ public class Obstacles : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             playerMovement.BoostAmount -= 1;
+            playerMovement.BoostEnergy -= 20f;
             playerMovement.speed = 10;
             playerMovement.horizontalMultiplier = 1.2f;
             Debug.Log("boost -1");
@@ -31,6 +32,7 @@ public class Obstacles : MonoBehaviour
         {
             playerMovement.BoostAmount -= 1;
             playerMovement.speed = 10;
+            playerMovement.BoostEnergy -= 20f;
             playerMovement.horizontalMultiplier = 1.2f;
             Debug.Log("boost -1");
             playerMovement.die();
