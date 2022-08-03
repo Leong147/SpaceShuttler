@@ -24,10 +24,11 @@ public class PlayerMovement : MonoBehaviour
     public Text score;
     public Text bulletText;
     public Text boostEnergyText;
+    public Text lifeText;
 
     float horizontalInput;
-    public float horizontalMultiplier = 5f;
-    float MaxhorizontalMultiplier = 6f;
+    public float horizontalMultiplier = 3.8f;
+    float MaxhorizontalMultiplier = 5f;
 
     public int BulletAmount;
     public int MaxBulletAmout = 8;
@@ -38,9 +39,10 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         Count = 0;
-        distance = 4;
+        distance = 5.99f;
         BulletAmount = 5;
         Time.timeScale = 1;
+        EnergyPoint = true;
     }
 
     private void FixedUpdate()
@@ -51,13 +53,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 horizontalMove = transform.right * horizontalInput * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
         //below were from update
-        BoostEnergy -= 1.25f * Time.deltaTime;
-        distance += speed*Time.deltaTime;
+        //BoostEnergy -= 1.15f * Time.deltaTime;
+        distance += speed * Time.deltaTime;
         if (BulletAmount < MaxBulletAmout)
         {
             bulletCooldown += Time.deltaTime;
         }
-        Debug.Log("" + distance);
     }
 
     // Update is called once per frame
@@ -66,13 +67,14 @@ public class PlayerMovement : MonoBehaviour
         score.text = Count.ToString();
         bulletText.text = BulletAmount.ToString();
         boostEnergyText.text = BoostEnergy.ToString();
+        lifeText.text = BoostAmount.ToString();
         //BoostEnergy -= 1.25f * Time.deltaTime;
 
         horizontalInput = Input.GetAxis("Horizontal");
 
         //distance += speed;
 
-        if(distance >= 5)
+        if(distance >= 6)
         {
             Count += 1;
             distance = 0;
@@ -138,19 +140,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Set for Spawning Energy Point Tile
-        if (Count > 0 && Count <= 200 && Count % 25 == 0)
+        if (Count > 0 && Count <= 250 && Count % 25 == 0)
         {
             EnergyPoint = true;
         }
 
-        if (Count > 200 && Count <= 500 && Count % 30 == 0)
+        if (Count >= 250 && Count <= 750 && Count % 30 == 0)
         {
             EnergyPoint = true;
         }
 
-        if (Count > 500 && Count % 50 == 0)
+        if (Count >= 750 && Count % 50 == 0)
         {
             EnergyPoint = true;
+        }
+
+        if(BoostAmount <= 0f)
+        {
+            die();
         }
     }
 
@@ -172,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             GameObject b = Instantiate(bullet);
             b.transform.position = bulletSpawnPoint.transform.position;
             BulletAmount -= 1;
-            Destroy(b, 0.5f);
+            Destroy(b, 2f);
         }
         
     } 
@@ -180,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
     public void Boost()
     {
         speed += 5;
-        horizontalMultiplier += 0.2f;
+        horizontalMultiplier += 0.3f;
     }
 
     void Restart()
@@ -194,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         {
             BulletAmount += 1;
             speed += 5;
-            horizontalMultiplier += 0.2f;
+            horizontalMultiplier += 0.3f;
             Destroy(other.gameObject);
             BoostEnergy += 30f;
         }

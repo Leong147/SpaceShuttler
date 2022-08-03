@@ -23,13 +23,13 @@ public class GroundSpawner : MonoBehaviour
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         }
 
-        else if(GSCount > 0 && GSCount <= 200 && playermovement.EnergyPoint != true)
+        else if(GSCount > 0 && GSCount <= 235 && playermovement.EnergyPoint != true)
             {
                 GameObject temp = Instantiate(groundTile1, nextSpawnPoint, Quaternion.identity);
                 nextSpawnPoint = temp.transform.GetChild(1).transform.position;
             }
 
-        else if (GSCount > 0 && GSCount <= 200 && playermovement.EnergyPoint == true)
+        else if (GSCount > 0 && GSCount <= 235 && playermovement.EnergyPoint == true)
         {
             GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
@@ -37,13 +37,13 @@ public class GroundSpawner : MonoBehaviour
             Debug.Log("Spawn Energy Point");
         }
 
-        else if (GSCount > 200 && playermovement.EnergyPoint != true)
+        else if (GSCount > 235 && playermovement.EnergyPoint != true)
         {
             GameObject temp = Instantiate(groundTile2, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         }
 
-        else if (GSCount > 200 && playermovement.EnergyPoint == true)
+        else if (GSCount > 235 && playermovement.EnergyPoint == true)
         {
             GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;

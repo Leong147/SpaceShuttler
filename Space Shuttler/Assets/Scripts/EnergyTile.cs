@@ -22,8 +22,11 @@ public class EnergyTile : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        groundSpawner.SpawnTile();
-        Destroy(gameObject, 3);
+        if(other.gameObject.tag == "player")
+        {
+            groundSpawner.SpawnTile();
+            Destroy(gameObject, 3f);
+        }
     }
 
     // Update is called once per frame
