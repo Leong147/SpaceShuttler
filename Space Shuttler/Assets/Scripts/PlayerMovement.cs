@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public bool EnergyPoint;
     public float BoostEnergy = 100f;
     float MaxBoostEnergy = 100f;
+    public Camera PlayerCam;
+    bool AddFOV;
+    public float CamValue = 0;
 
     public float distance = 0f;
     public int Count = 0;
@@ -27,14 +30,16 @@ public class PlayerMovement : MonoBehaviour
     public Text lifeText;
 
     float horizontalInput;
-    public float horizontalMultiplier = 3.8f;
-    float MaxhorizontalMultiplier = 5f;
+    public float horizontalMultiplier = 4f;
+    float MaxhorizontalMultiplier = 6f;
 
     public int BulletAmount;
     public int MaxBulletAmout = 8;
     float bulletCooldown = 0;
 
     public GameObject Energy;
+
+    bool TestMax;
 
     private void Start()
     {
@@ -43,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         BulletAmount = 5;
         Time.timeScale = 1;
         EnergyPoint = true;
+        PlayerCam.fieldOfView = 60;
     }
 
     private void FixedUpdate()
@@ -55,9 +61,53 @@ public class PlayerMovement : MonoBehaviour
         //below were from update
         //BoostEnergy -= 1.15f * Time.deltaTime;
         distance += speed * Time.deltaTime;
+        BoostEnergy = 100f;
+
         if (BulletAmount < MaxBulletAmout)
         {
             bulletCooldown += Time.deltaTime;
+        }
+
+        if (AddFOV == true)
+        {
+            IncreaseCamValue();
+            PlayerCam.fieldOfView += CamValue;
+
+            if (CamValue > 0.33)
+            {
+                CamValue = 0;
+                AddFOV = false;
+            }
+        }
+
+        ///
+        ///test final
+        ///
+
+        if (Input.GetKeyDown("m"))
+        {
+            TestMax = true;
+            Debug.Log("Limit Break");
+        }
+
+        if (TestMax == true || Count >= 1500)
+        {
+            Maxspeed = 35;
+            speed = Maxspeed;
+            horizontalMultiplier = 5.5f;
+            IncreaseCamValue();
+            PlayerCam.fieldOfView += CamValue;
+
+            if(PlayerCam.fieldOfView > 75)
+            {
+                PlayerCam.fieldOfView = 75;
+            }
+
+            if (bulletCooldown >= 1)
+            {
+                BulletAmount += 1;
+                bulletCooldown = 0;
+            }
         }
     }
 
@@ -107,11 +157,23 @@ public class PlayerMovement : MonoBehaviour
         //    bulletCooldown += Time.deltaTime;
         //}
 
-        if(bulletCooldown >= 5)
+        if (Count < 1500)
         {
-            BulletAmount += 1;
-            bulletCooldown = 0;
+            if (bulletCooldown >= 5)
+            {
+                BulletAmount += 1;
+                bulletCooldown = 0;
+            }
         }
+        else if (Count >= 1500)
+        {
+            if (bulletCooldown >= 1.5)
+            {
+                BulletAmount += 1;
+                bulletCooldown = 0;
+            }
+        }
+        
 
         if(BulletAmount >= MaxBulletAmout)
         {
@@ -155,9 +217,19 @@ public class PlayerMovement : MonoBehaviour
             EnergyPoint = true;
         }
 
-        if(BoostAmount <= 0f)
+        if (Count >= 1500 && Count % 65 == 0)
+        {
+            EnergyPoint = true;
+        }
+
+        if (BoostAmount <= 0f)
         {
             die();
+        }
+
+        if(PlayerCam.fieldOfView > 72)
+        {
+            PlayerCam.fieldOfView = 72;
         }
     }
 
@@ -187,7 +259,8 @@ public class PlayerMovement : MonoBehaviour
     public void Boost()
     {
         speed += 5;
-        horizontalMultiplier += 0.3f;
+        horizontalMultiplier += 0.5f;
+        AddFOV = true;
     }
 
     void Restart()
@@ -201,9 +274,16 @@ public class PlayerMovement : MonoBehaviour
         {
             BulletAmount += 1;
             speed += 5;
-            horizontalMultiplier += 0.3f;
+            horizontalMultiplier += 0.5f;
             Destroy(other.gameObject);
+            AddFOV = true;
             BoostEnergy += 30f;
         }
     }
+
+    void IncreaseCamValue()
+    {
+        CamValue += Time.fixedDeltaTime;
+    }
+
 }

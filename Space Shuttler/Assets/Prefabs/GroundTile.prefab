@@ -188,8 +188,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 2, y: 0.7, z: 0}
+  m_Size: {x: 7.5, y: 3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5059294180579234753
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52de1f1652248db4caa6cff23b7fca85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 1219097787906601518, guid: 0acdc1793b9a1a846847b04358d0d2f1, type: 3}
+  ObstaclePrefabs:
+  - {fileID: 1219097787906601518, guid: 0acdc1793b9a1a846847b04358d0d2f1, type: 3}
+  - {fileID: 164131011707528014, guid: d666fd033a8a72c49adcba29935e032e, type: 3}
   CoinPrefab: {fileID: 5375465463970419754, guid: b021f302569b30740b16156da71dff93, type: 3}
 --- !u!1 &5894465594414980177
 GameObject:
@@ -545,5 +547,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -2, y: 0.7, z: 0}
+  m_Size: {x: 7.5, y: 3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

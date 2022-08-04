@@ -5,16 +5,20 @@ using UnityEngine;
 public class GroundTile : MonoBehaviour
 {
     GroundSpawner groundSpawner;
-    public GameObject obstaclePrefab;
+    public GameObject[] ObstaclePrefabs;
     public GameObject CoinPrefab;
     Transform spawnPoint;
     Transform spawnPoint2;
     int obstacleSpawnIndex;
     int obstacleSpawnIndex2;
 
+    int RandomObs;
+
     // Start is called before the first frame update
     void Start()
     {
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
         //SpawnObstacles();
         //SpawnSecondObstacles();
@@ -40,7 +44,7 @@ public class GroundTile : MonoBehaviour
         obstacleSpawnIndex = Random.Range(4,8);
         spawnPoint = transform.GetChild(obstacleSpawnIndex);
 
-        Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
+        Instantiate(ObstaclePrefabs[RandomObs], spawnPoint.position, Quaternion.identity, transform);
     }
 
     void SpawnSecondObstacles()
@@ -49,7 +53,7 @@ public class GroundTile : MonoBehaviour
             if (obstacleSpawnIndex2 != obstacleSpawnIndex)
             {
                 spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
-                Instantiate(obstaclePrefab, spawnPoint2.position, Quaternion.identity, transform);
+                Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
             }       
     }
 }

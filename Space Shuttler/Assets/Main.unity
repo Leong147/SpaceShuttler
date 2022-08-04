@@ -1084,7 +1084,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 108
+  m_Constraints: 100
   m_CollisionDetection: 2
 --- !u!136 &1165056668
 CapsuleCollider:
@@ -1133,6 +1133,8 @@ MonoBehaviour:
   groundTile: {fileID: 5059294180579234753, guid: 2f90815c747ea3b4a9b2b3949278624b, type: 3}
   groundTile1: {fileID: 5059294180579234753, guid: 7c00979ef574f764396c9fda30a7d7fc, type: 3}
   groundTile2: {fileID: 5059294180579234753, guid: 54dcdcc7c601963458a97aa961d324e6, type: 3}
+  groundTile3: {fileID: 5059294180579234753, guid: 38db691a7fedf6442af2bc93f8b2a289, type: 3}
+  groundTile4: {fileID: 5059294180579234753, guid: 34a5be61e86744c47ab41eeb3a8356d7, type: 3}
   EnergyTile: {fileID: 5059294180579234753, guid: a61419251c5b7e0429b3ae01470a8ab3, type: 3}
 --- !u!4 &1330135231
 Transform:
@@ -1677,6 +1679,8 @@ MonoBehaviour:
   bullet: {fileID: 6197644892648550511, guid: 6eae035df02c8a142bec191ac7ee26c8, type: 3}
   EnergyPoint: 0
   BoostEnergy: 100
+  PlayerCam: {fileID: 963194227}
+  CamValue: 0
   distance: 0
   Count: 0
   BoostAmount: 99
@@ -1702,7 +1706,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!145 &1745923763
 SpringJoint:
@@ -1717,7 +1721,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 100
+  m_Spring: 500
   m_Damper: 0
   m_MinDistance: 0
   m_MaxDistance: 0

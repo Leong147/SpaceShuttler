@@ -19,10 +19,11 @@ public class Obstacles : MonoBehaviour
             playerMovement.BoostAmount -= 1;
             playerMovement.BoostEnergy -= 20f;
             playerMovement.speed = 10;
-            playerMovement.horizontalMultiplier = 3.8f;
+            playerMovement.horizontalMultiplier = 4f;
             Debug.Log("boost -1");
             playerMovement.die();
             Destroy(this.gameObject);
+            playerMovement.PlayerCam.fieldOfView = 60;
         }
     }
 
@@ -33,10 +34,10 @@ public class Obstacles : MonoBehaviour
             playerMovement.BoostAmount -= 1;
             playerMovement.speed = 10;
             playerMovement.BoostEnergy -= 20f;
-            playerMovement.horizontalMultiplier = 3.8f;
-            Debug.Log("boost -1");
+            playerMovement.horizontalMultiplier = 4f;
             playerMovement.die();
             Destroy(this.gameObject);
+            playerMovement.PlayerCam.fieldOfView = 60;
         }
     }
 

@@ -9,6 +9,8 @@ public class GroundSpawner : MonoBehaviour
     public GameObject groundTile;
     public GameObject groundTile1;
     public GameObject groundTile2;
+    public GameObject groundTile3;
+    public GameObject groundTile4;
 
     public GameObject EnergyTile;
 
@@ -23,6 +25,7 @@ public class GroundSpawner : MonoBehaviour
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         }
 
+        //easy mode
         else if(GSCount > 0 && GSCount <= 235 && playermovement.EnergyPoint != true)
             {
                 GameObject temp = Instantiate(groundTile1, nextSpawnPoint, Quaternion.identity);
@@ -37,13 +40,44 @@ public class GroundSpawner : MonoBehaviour
             Debug.Log("Spawn Energy Point");
         }
 
-        else if (GSCount > 235 && playermovement.EnergyPoint != true)
+        //normal mode
+        else if (GSCount > 235 && GSCount <= 685 && playermovement.EnergyPoint != true)
         {
             GameObject temp = Instantiate(groundTile2, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         }
 
-        else if (GSCount > 235 && playermovement.EnergyPoint == true)
+        else if (GSCount > 235 && GSCount <= 685 && playermovement.EnergyPoint == true)
+        {
+            GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
+            nextSpawnPoint = temp.transform.GetChild(1).transform.position;
+            playermovement.EnergyPoint = false;
+            Debug.Log("Spawn Energy Point");
+        }
+
+        //hard mode
+        else if (GSCount > 685 && GSCount <= 1485 && playermovement.EnergyPoint != true)
+        {
+            GameObject temp = Instantiate(groundTile3, nextSpawnPoint, Quaternion.identity);
+            nextSpawnPoint = temp.transform.GetChild(1).transform.position;
+        }
+
+        else if (GSCount > 685 && GSCount <= 1485 && playermovement.EnergyPoint == true)
+        {
+            GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
+            nextSpawnPoint = temp.transform.GetChild(1).transform.position;
+            playermovement.EnergyPoint = false;
+            Debug.Log("Spawn Energy Point");
+        }
+
+        //hell mode
+        else if (GSCount > 1485 && playermovement.EnergyPoint != true)
+        {
+            GameObject temp = Instantiate(groundTile4, nextSpawnPoint, Quaternion.identity);
+            nextSpawnPoint = temp.transform.GetChild(1).transform.position;
+        }
+
+        else if (GSCount > 1485 && playermovement.EnergyPoint == true)
         {
             GameObject temp = Instantiate(EnergyTile, nextSpawnPoint, Quaternion.identity);
             nextSpawnPoint = temp.transform.GetChild(1).transform.position;
