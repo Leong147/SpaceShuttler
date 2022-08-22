@@ -217,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 5059294180579234753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2350796010349619323}
@@ -259,7 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefabs:
   - {fileID: 1219097787906601518, guid: 0acdc1793b9a1a846847b04358d0d2f1, type: 3}
-  - {fileID: 164131011707528014, guid: d666fd033a8a72c49adcba29935e032e, type: 3}
+  - {fileID: 1219097787906601518, guid: 27c7615c9b652b9429627ad72485c62d, type: 3}
+  - {fileID: 1219097787906601518, guid: 9a1cea0a55cd1b048856fbfdbec7e882, type: 3}
+  - {fileID: 1219097787906601518, guid: 538a4afc7111f3443b823afbf21542ca, type: 3}
   CoinPrefab: {fileID: 5375465463970419754, guid: b021f302569b30740b16156da71dff93, type: 3}
 --- !u!1 &5894465594414980177
 GameObject:

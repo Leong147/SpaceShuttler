@@ -59,9 +59,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 horizontalMove = transform.right * horizontalInput * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
         //below were from update
-        //BoostEnergy -= 1.15f * Time.deltaTime;
+        BoostEnergy -= 1.15f * Time.deltaTime;
         distance += speed * Time.deltaTime;
-        BoostEnergy = 100f;
+        //BoostEnergy = 100f;
 
         if (BulletAmount < MaxBulletAmout)
         {
