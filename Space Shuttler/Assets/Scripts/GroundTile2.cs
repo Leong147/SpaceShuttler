@@ -17,7 +17,7 @@ public class GroundTile2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        //RandomObs = Random.Range(0, ObstaclePrefabs.Length);
 
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
         SpawnObstacles();
@@ -41,6 +41,7 @@ public class GroundTile2 : MonoBehaviour
 
     void SpawnObstacles()
     {
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
         obstacleSpawnIndex = Random.Range(4,9);
         spawnPoint = transform.GetChild(obstacleSpawnIndex);
 
@@ -49,11 +50,12 @@ public class GroundTile2 : MonoBehaviour
 
     void SpawnSecondObstacles()
     {
-            obstacleSpawnIndex2 = Random.Range(4, 9);
-            if (obstacleSpawnIndex2 != obstacleSpawnIndex)
-            {
-                spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
-                Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
-            }       
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        obstacleSpawnIndex2 = Random.Range(4, 9);
+        if (obstacleSpawnIndex2 != obstacleSpawnIndex)
+        {
+            spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
+            Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
+        }       
     }
 }

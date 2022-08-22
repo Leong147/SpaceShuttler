@@ -55,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!alive) return;
 
+        if (PauseScreenBehaviour.paused)
+        {
+            return;
+        }
+
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
         Vector3 horizontalMove = transform.right * horizontalInput * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
@@ -114,6 +119,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseScreenBehaviour.paused)
+        {
+            return;
+        }
+
         score.text = Count.ToString();
         bulletText.text = BulletAmount.ToString();
         boostEnergyText.text = BoostEnergy.ToString();
@@ -121,10 +131,11 @@ public class PlayerMovement : MonoBehaviour
         //BoostEnergy -= 1.25f * Time.deltaTime;
 
         horizontalInput = Input.GetAxis("Horizontal");
+        //horizontalInput = Input.acceleration.x;
 
         //distance += speed;
 
-        if(distance >= 6)
+        if (distance >= 6)
         {
             Count += 1;
             distance = 0;
@@ -136,10 +147,10 @@ public class PlayerMovement : MonoBehaviour
             die();
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            shootBullet();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    shootBullet();
+        //}
 
         if (speed >= Maxspeed)
         {

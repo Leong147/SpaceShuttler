@@ -41,6 +41,7 @@ public class GroundTile1: MonoBehaviour
 
     void SpawnObstacles()
     {
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
         obstacleSpawnIndex = Random.Range(4,9);
         spawnPoint = transform.GetChild(obstacleSpawnIndex);
 
@@ -49,11 +50,12 @@ public class GroundTile1: MonoBehaviour
 
     void SpawnSecondObstacles()
     {
-            obstacleSpawnIndex2 = Random.Range(4, 9);
-            if (obstacleSpawnIndex2 != obstacleSpawnIndex)
-            {
-                spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        obstacleSpawnIndex2 = Random.Range(4, 9);
+        if (obstacleSpawnIndex2 != obstacleSpawnIndex)
+        {
+            spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
                 Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
-            }       
+        }       
     }
 }

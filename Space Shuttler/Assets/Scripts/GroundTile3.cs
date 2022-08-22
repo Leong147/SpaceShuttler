@@ -19,7 +19,7 @@ public class GroundTile3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        //RandomObs = Random.Range(0, ObstaclePrefabs.Length);
 
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
         SpawnObstacles();
@@ -44,6 +44,7 @@ public class GroundTile3 : MonoBehaviour
 
     void SpawnObstacles()
     {
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
         obstacleSpawnIndex = Random.Range(4,9);
         spawnPoint = transform.GetChild(obstacleSpawnIndex);
 
@@ -52,21 +53,23 @@ public class GroundTile3 : MonoBehaviour
 
     void SpawnSecondObstacles()
     {
-            obstacleSpawnIndex2 = Random.Range(4, 9);
-            if (obstacleSpawnIndex2 != obstacleSpawnIndex)
-            {
-                spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
-                Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
-            }       
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        obstacleSpawnIndex2 = Random.Range(4, 9);
+        if (obstacleSpawnIndex2 != obstacleSpawnIndex)
+        {
+            spawnPoint2 = transform.GetChild(obstacleSpawnIndex2);
+            Instantiate(ObstaclePrefabs[RandomObs], spawnPoint2.position, Quaternion.identity, transform);
+        }       
     }
 
     void SpawnThirdObstacles()
     {
-            obstacleSpawnIndex3 = Random.Range(4, 9);
-            if (obstacleSpawnIndex3 != obstacleSpawnIndex && obstacleSpawnIndex3 != obstacleSpawnIndex2)
-            {
-                spawnPoint3 = transform.GetChild(obstacleSpawnIndex3);
-                Instantiate(ObstaclePrefabs[RandomObs], spawnPoint3.position, Quaternion.identity, transform);
-            }   
+        RandomObs = Random.Range(0, ObstaclePrefabs.Length);
+        obstacleSpawnIndex3 = Random.Range(4, 9);
+        if (obstacleSpawnIndex3 != obstacleSpawnIndex && obstacleSpawnIndex3 != obstacleSpawnIndex2)
+        {
+            spawnPoint3 = transform.GetChild(obstacleSpawnIndex3);
+            Instantiate(ObstaclePrefabs[RandomObs], spawnPoint3.position, Quaternion.identity, transform);
+        }   
     }
 }
