@@ -1660,9 +1660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Restart
-
-'
+  m_Text: Restart
 --- !u!222 &1056521846
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2580,7 +2578,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1646054385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253689092}
+        m_TargetAssemblyTypeName: PauseScreenBehaviour, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1646054385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3164,9 +3174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Resume
-
-'
+  m_Text: Resume
 --- !u!222 &1881658601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3482,9 +3490,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Back to Menu
-
-'
+  m_Text: Back to Menu
 --- !u!222 &1996154101
 CanvasRenderer:
   m_ObjectHideFlags: 0

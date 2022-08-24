@@ -26,4 +26,9 @@ public class PauseScreenBehaviour : MonoBehaviour
     {
         paused = false;
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
