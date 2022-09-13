@@ -39,10 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject Energy;
     public Text FinalScore;
+    public Text SpeedText;
 
     bool TestMax;
 
     public GameObject GameOverMenu;
+    public Image EnergyBarImage;
+
+    public AudioSource ShootSound;
+    public AudioSource Hitsound;
+    public AudioSource Gainsound;
+    public AudioSource Gainsound2;
 
     private void Start()
     {
@@ -53,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         EnergyPoint = true;
         PlayerCam.fieldOfView = 60;
         GameOverMenu.SetActive(false);
+        EnergyBarImage.fillAmount = BoostEnergy / 100;
     }
 
     private void FixedUpdate()
@@ -70,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         //below were from update
         BoostEnergy -= 1.15f * Time.deltaTime;
         distance += speed * Time.deltaTime;
+        EnergyBarImage.fillAmount = BoostEnergy / 100;
         //BoostEnergy = 100f;
 
         if (BulletAmount < MaxBulletAmout)
@@ -92,8 +101,7 @@ public class PlayerMovement : MonoBehaviour
         ///
         ///test final
         ///
-
-        if (Input.GetKeyDown("m"))
+        if (Input.GetKeyDown("t"))
         {
             TestMax = true;
             Debug.Log("Limit Break");
@@ -246,6 +254,43 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerCam.fieldOfView = 72;
         }
+
+        //change speed text 
+        if (speed == 10)
+        {
+            SpeedText.text = "*1";
+        }
+
+        if (speed == 15)
+        {
+            SpeedText.text = "*1.25";
+        }
+
+        if (speed == 20)
+        {
+            SpeedText.text = "*1.5";
+        }
+
+        if (speed == 25)
+        {
+            SpeedText.text = "*1.75";
+        }
+
+        if (speed >= 30)
+        {
+            SpeedText.text = "*Max";
+        }
+
+        //change background
+        if(Count >= 250)
+        {
+
+        }
+
+        if (Count >= 750)
+        {
+            //Skybox1.color = Color.red;
+        }
     }
 
     public void die()
@@ -273,6 +318,7 @@ public class PlayerMovement : MonoBehaviour
             b.transform.position = bulletSpawnPoint.transform.position;
             BulletAmount -= 1;
             Destroy(b, 2f);
+            ShootSound.Play();
         }
         
     } 
@@ -293,6 +339,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "energypoint")
         {
+            Gainsound.Play();
+            Gainsound2.Play();
             BulletAmount += 1;
             speed += 5;
             horizontalMultiplier += 0.5f;

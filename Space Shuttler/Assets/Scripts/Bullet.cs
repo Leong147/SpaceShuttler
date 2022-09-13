@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioSource Hitsound;
     public float speed = 100f;
     public Rigidbody rb;
 
@@ -17,8 +18,9 @@ public class Bullet : MonoBehaviour
     {
         if(other.tag == "obstacle")
         {
+            Hitsound.Play();
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject);          
         }
     }
 }

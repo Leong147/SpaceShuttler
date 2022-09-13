@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    PlayerMovement playerMovement;
+    PlayerMovement playerMovement; 
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class Obstacles : MonoBehaviour
     {
         if (other.gameObject.tag == "player")
         {
+            playerMovement.Hitsound.Play();
             playerMovement.BoostAmount -= 1;
             playerMovement.BoostEnergy -= 20f;
             playerMovement.speed = 10;
@@ -31,6 +32,7 @@ public class Obstacles : MonoBehaviour
     {
         if(collision.gameObject.tag == "player")
         {
+            playerMovement.Hitsound.Play();
             playerMovement.BoostAmount -= 1;
             playerMovement.speed = 10;
             playerMovement.BoostEnergy -= 20f;
