@@ -38,8 +38,11 @@ public class PlayerMovement : MonoBehaviour
     float bulletCooldown = 0;
 
     public GameObject Energy;
+    public Text FinalScore;
 
     bool TestMax;
+
+    public GameObject GameOverMenu;
 
     private void Start()
     {
@@ -49,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1;
         EnergyPoint = true;
         PlayerCam.fieldOfView = 60;
+        GameOverMenu.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -251,8 +255,14 @@ public class PlayerMovement : MonoBehaviour
             BoostEnergy = 0f;
             speed = 0;
             alive = false;
-            Invoke("Restart", 2);
+            Invoke("GameOver", 2);
         }
+    }
+
+    public void GameOver()
+    {
+        GameOverMenu.SetActive(true);
+        FinalScore.text = score.text;
     }
 
     public void shootBullet()
