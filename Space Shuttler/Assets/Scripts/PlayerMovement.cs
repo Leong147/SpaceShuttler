@@ -142,8 +142,15 @@ public class PlayerMovement : MonoBehaviour
         lifeText.text = BoostAmount.ToString();
         //BoostEnergy -= 1.25f * Time.deltaTime;
 
+        //Unity editor OR Android
+#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
         horizontalInput = Input.GetAxis("Horizontal");
-        //horizontalInput = Input.acceleration.x;
+
+
+#elif UNITY_IOS || UNITY_ANDROID
+        horizontalInput = Input.acceleration.x;
+
+#endif
 
         //distance += speed;
 
