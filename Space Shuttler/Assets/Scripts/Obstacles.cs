@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    PlayerMovement playerMovement; 
+    PlayerMovement playerMovement;
+    public GameObject Explosion;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,8 @@ public class Obstacles : MonoBehaviour
             playerMovement.die();
             Destroy(this.gameObject);
             playerMovement.PlayerCam.fieldOfView = 60;
+            GameObject firework = Instantiate(Explosion, transform.position, Quaternion.identity);
+            firework.GetComponent<ParticleSystem>().Play();
         }
     }
 
@@ -40,6 +43,8 @@ public class Obstacles : MonoBehaviour
             playerMovement.die();
             Destroy(this.gameObject);
             playerMovement.PlayerCam.fieldOfView = 60;
+            GameObject firework = Instantiate(Explosion, transform.position, Quaternion.identity);
+            firework.GetComponent<ParticleSystem>().Play();
         }
     }
 

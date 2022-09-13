@@ -69,7 +69,10 @@ public class PlayerMovement : MonoBehaviour
     private bool DoNotFade;
     private bool DoFadeHard;
     private bool DoNotFadeHard;
+
     //skybox construction end
+
+
 
     private void Start()
     {

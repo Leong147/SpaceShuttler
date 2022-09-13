@@ -273,6 +273,7 @@ MonoBehaviour:
   Hitsound: {fileID: 3837516604945893513}
   speed: 50
   rb: {fileID: 1148073746343154876}
+  Explosion: {fileID: 1812338331157353505, guid: c80631e3dfeeab14698cadf8135540e7, type: 3}
 --- !u!65 &8162044034579173445
 BoxCollider:
   m_ObjectHideFlags: 0

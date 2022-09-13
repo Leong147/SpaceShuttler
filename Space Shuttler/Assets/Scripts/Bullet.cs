@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     public AudioSource Hitsound;
     public float speed = 100f;
     public Rigidbody rb;
+    private Collider other;
+    public GameObject Explosion;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +22,11 @@ public class Bullet : MonoBehaviour
         if(other.tag == "obstacle")
         {
             Hitsound.Play();
+            GameObject firework = Instantiate(Explosion, transform.position, Quaternion.identity);
+            firework.GetComponent<ParticleSystem>().Play();
             Destroy(other.gameObject);
-            Destroy(this.gameObject);          
+            Destroy(this.gameObject);
         }
     }
+
 }
