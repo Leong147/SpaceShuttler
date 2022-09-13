@@ -51,8 +51,30 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource Gainsound;
     public AudioSource Gainsound2;
 
+    //skybox consturction
+    public Material[] NormalSkybox;
+    public Material[] EasySkybox;
+    public Material[] HardSkybox;
+
+    private float CurrentExposure;
+    private float initialExposure = 1.56f;
+    private float dimmedExposure = 0f;
+    private float desiredDuration = 1f;
+    private float elapsedTime =0f;
+    private float elapsedTimeNormal =0f;
+    private float elapsedTimeNormall = 0f;
+    private float elapsedTimeHard = 0f;
+
+    private bool DoFade;
+    private bool DoNotFade;
+    private bool DoFadeHard;
+    private bool DoNotFadeHard;
+    //skybox construction end
+
     private void Start()
     {
+        CurrentExposure = 1.56f;
+        RenderSettings.skybox.SetFloat("_Exposure", CurrentExposure);
         Count = 0;
         distance = 5.99f;
         BulletAmount = 5;
@@ -115,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             IncreaseCamValue();
             PlayerCam.fieldOfView += CamValue;
 
-            if(PlayerCam.fieldOfView > 75)
+            if (PlayerCam.fieldOfView > 75)
             {
                 PlayerCam.fieldOfView = 75;
             }
@@ -203,19 +225,19 @@ public class PlayerMovement : MonoBehaviour
                 bulletCooldown = 0;
             }
         }
-        
 
-        if(BulletAmount >= MaxBulletAmout)
+
+        if (BulletAmount >= MaxBulletAmout)
         {
             BulletAmount = MaxBulletAmout;
         }
 
-        if(BoostEnergy >= MaxBoostEnergy)
+        if (BoostEnergy >= MaxBoostEnergy)
         {
             BoostEnergy = MaxBoostEnergy;
         }
 
-        if(BoostEnergy <= 0)
+        if (BoostEnergy <= 0)
         {
             BoostEnergy = 0;
             BoostAmount = 0;
@@ -225,9 +247,9 @@ public class PlayerMovement : MonoBehaviour
         //Debug test speed up
         if (Input.GetKeyDown("space"))
         {
-            if(speed < Maxspeed)
+            if (speed < Maxspeed)
             {
-                Boost();              
+                Boost();
             }
         }
 
@@ -257,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
             die();
         }
 
-        if(PlayerCam.fieldOfView > 72)
+        if (PlayerCam.fieldOfView > 72)
         {
             PlayerCam.fieldOfView = 72;
         }
@@ -289,20 +311,55 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //change background
-        if(Count >= 250)
+        if (Count >= 250)
+        {
+            DoFade = true;
+        }
+
+        if (DoFade == true)
+        {
+            elapsedTime += Time.deltaTime;
+            CurrentExposure = Mathf.Lerp(initialExposure, dimmedExposure, Mathf.Clamp01(elapsedTime / desiredDuration));
+            RenderSettings.skybox.SetFloat("_Exposure", CurrentExposure);
+            StartCoroutine(FadeIn());
+            DoFade = false;
+            
+        }
+
+        if (DoNotFade==true)
         {
 
+            elapsedTimeNormal += Time.deltaTime;
+            RenderSettings.skybox = NormalSkybox[0];
+            CurrentExposure = Mathf.Lerp(dimmedExposure, initialExposure, Mathf.Clamp01(elapsedTimeNormal / desiredDuration));
+            RenderSettings.skybox.SetFloat("_Exposure", CurrentExposure);
         }
 
         if (Count >= 750)
         {
-            //Skybox1.color = Color.red;
+            DoNotFade = false;
+            DoFadeHard = true;
+        }
+        if (DoFadeHard==true)
+        {
+            elapsedTimeNormall += Time.deltaTime;
+            CurrentExposure = Mathf.Lerp(initialExposure,dimmedExposure , Mathf.Clamp01(elapsedTimeNormall / desiredDuration));
+            RenderSettings.skybox.SetFloat("_Exposure", CurrentExposure);
+            StartCoroutine(FadeInHard());
+            DoFadeHard = false;
+        }
+        if (DoNotFadeHard == true)
+        {
+            elapsedTimeHard += Time.deltaTime;
+            RenderSettings.skybox = HardSkybox[0];
+            CurrentExposure = Mathf.Lerp(dimmedExposure, initialExposure, Mathf.Clamp01(elapsedTimeHard / desiredDuration));
+            RenderSettings.skybox.SetFloat("_Exposure", CurrentExposure);
         }
     }
 
     public void die()
     {
-        if(BoostAmount <= 0f)
+        if (BoostAmount <= 0f)
         {
             BoostEnergy = 0f;
             speed = 0;
@@ -319,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void shootBullet()
     {
-        if(BulletAmount > 0)
+        if (BulletAmount > 0)
         {
             GameObject b = Instantiate(bullet);
             b.transform.position = bulletSpawnPoint.transform.position;
@@ -327,8 +384,8 @@ public class PlayerMovement : MonoBehaviour
             Destroy(b, 2f);
             ShootSound.Play();
         }
-        
-    } 
+
+    }
 
     public void Boost()
     {
@@ -344,7 +401,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "energypoint")
+        if (other.gameObject.tag == "energypoint")
         {
             Gainsound.Play();
             Gainsound2.Play();
@@ -362,4 +419,20 @@ public class PlayerMovement : MonoBehaviour
         CamValue += Time.fixedDeltaTime;
     }
 
+    IEnumerator FadeIn()
+    {
+        
+        yield return new WaitForSeconds(1);
+        DoNotFade = true;
+       
+
+    }
+    IEnumerator FadeInHard()
+    {
+
+        yield return new WaitForSeconds(1);
+        DoNotFadeHard = true;
+
+
+    }
 }

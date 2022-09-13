@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 4f7462c37d8f2db41b4642d684e621d2, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 18a5d08a6c1007a48a4f7159a7cc1066, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.028946273, g: 0.07965533, b: 0.10159562, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4815,7 +4815,7 @@ MonoBehaviour:
   PlayerCam: {fileID: 963194227}
   CamValue: 0
   distance: 0
-  Count: 0
+  Count: 745
   BoostAmount: 3
   score: {fileID: 409615714}
   bulletText: {fileID: 999194296}
@@ -4833,6 +4833,12 @@ MonoBehaviour:
   Hitsound: {fileID: 1300544759}
   Gainsound: {fileID: 1291619452}
   Gainsound2: {fileID: 1404710444}
+  NormalSkybox:
+  - {fileID: 2100000, guid: 4f7462c37d8f2db41b4642d684e621d2, type: 2}
+  EasySkybox:
+  - {fileID: 2100000, guid: 18a5d08a6c1007a48a4f7159a7cc1066, type: 2}
+  HardSkybox:
+  - {fileID: 2100000, guid: a99ca1fd915d2d640ba7b93cdb939cae, type: 2}
 --- !u!54 &1745923762
 Rigidbody:
   m_ObjectHideFlags: 0
